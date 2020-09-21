@@ -1,3 +1,18 @@
+import random
+
+def ShuffleList(list):
+    firstHalf = list[:len(list)//2]
+    secondHalf = list[len(list)//2:]
+    list = []
+    while len(firstHalf) and len(secondHalf):
+        if random.randint(0,1):
+            list.append(firstHalf.pop())
+        else:
+            list.append(secondHalf.pop())
+    return list + firstHalf + secondHalf
+
+
+
 class deck:
 
     def __init__(self):
@@ -12,17 +27,19 @@ class deck:
 
 
     def shuffle(self):
-        pass
+        self.cards = ShuffleList(self.cards)
+        self.cards = ShuffleList(self.cards)
+        self.cards = ShuffleList(self.cards)
+        self.cards = ShuffleList(self.cards)
 
     def split(self, location):
-        pass
+        self.cards = self.cards[location:] + self.cards[:location]
 
     def take(self):
         pass
 
     def print(self):
-        for card in self.cards:
-            print(card)
+        print(self.cards)
 
 
 class card:
@@ -36,4 +53,8 @@ class card:
 
 if __name__ == "__main__":
     deck1 = deck()
+    deck1.print()
+    deck1.shuffle()
+    deck1.print()
+    deck1.split(20)
     deck1.print()
