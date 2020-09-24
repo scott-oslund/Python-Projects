@@ -36,7 +36,7 @@ class deck:
         self.cards = self.cards[location:] + self.cards[:location]
 
     def take(self):
-        pass
+        return self.cards.pop()
 
     def print(self):
         print(self.cards)
@@ -49,7 +49,17 @@ class card:
         self.suit = suit
 
     def __repr__(self):
-        return "%s___%d" % (self.suit, self.num)
+        if self.num == 0:
+            return "%s of %s" % ("Ace", self.suit)
+        if self.num < 11:
+            return "%d of %s" % (self.num, self.suit)
+        if self.num == 11:
+            return "%s of %s" % ("Jack", self.suit)
+        if self.num == 12:
+            return "%s of %s" % ("Queen", self.suit)
+        if self.num == 13:
+            return "%s of %s" % ("King", self.suit)
+        return "Joker"
 
 if __name__ == "__main__":
     deck1 = deck()
